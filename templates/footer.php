@@ -1,36 +1,50 @@
 <?php
 ?>
-<section class="container-fluid" style="background-color:white;">
-	<div class="row">
-		<div class="col-lg-6 col-md-12 mb-4">
-		  <h5 class="mb-3 text-dark">footer content</h5>
-		  <p>
-		    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-		    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-		    voluptatem veniam, est atque cumque eum delectus sint!
-		  </p>
+<div style="display:block; text-align: center;">
+	<hr style="display: inline-block; width: 80%;  border-top: 1px solid ghostwhite;">
+</div>
+<section class="container-fluid" >
+	<div class="row" style="padding-top: 20px;">
+		<div class="col-lg-3">
+		  <h5 class="mb-3" style="margin:20px"> <img src="https://www.tru.ca/__shared/templates/2016/images/truLogo-reverse.png" style="height: auto; width: auto; max-width: 200px; max-height: 200px;"> </h5>
 		</div>
-
-		<div class="col-lg-3 col-md-6 mb-4">
-		  <h5 class="mb-3 text-dark">links</h5>
+		<div class="col-md-2">
+		  <h5 class="mb-3 text-white"> Discover</h5>
 		  <ul class="list-unstyled mb-0">
 		    <li class="mb-1">
-		      <a href="#!" style="color: #4f4f4f;">FAQ</a>
+		      <a href="#!" >Library</a>
 		    </li>
 		    <li class="mb-1">
-		      <a href="#!" style="color: #4f4f4f;">Classes</a>
+		      <a href="#!">Moodle</a>
 		    </li>
 		    <li class="mb-1">
-		      <a href="#!" style="color: #4f4f4f;">Pricing</a>
+		      <a href="#!">Gym</a>
 		    </li>
 		    <li>
-		      <a href="#!" style="color: #4f4f4f;">Safety</a>
+		      <a href="#!">Media</a>
+		    </li>
+		  </ul>
+		</div>
+		<div class="col-md-2">
+		  <h5 class="mb-3 text-white">About</h5>
+		  <ul class="list-unstyled mb-0">
+		    <li class="mb-1">
+		      <a href="#!">FAQ</a>
+		    </li>
+		    <li class="mb-1">
+		      <a href="#!">Classes</a>
+		    </li>
+		    <li class="mb-1">
+		      <a href="#!">Pricing</a>
+		    </li>
+		    <li>
+		      <a href="#!">Safety</a>
 		    </li>
 		  </ul>
 		</div>
 
 		<div class="col-lg-3 col-md-6 mb-4">
-		  <h5 class="mb-1 text-dark">opening hours</h5>
+		  <h5 class="mb-1 text-white">Opening hours</h5>
 		  <table class="table" style="border-color: #666;">
 		    <tbody>
 		      <tr>
@@ -44,9 +58,8 @@
 		    </tbody>
 		  </table>
 		</div>
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			© 2020 Copyright:
-			<a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+		<div class="text-center p-3" style=" margin-top:20px">
+			© 2021 SUCKS, YEAH NO IDEA WHAT I AM DOING !
 		</div>
 	</div>
 </section>
