@@ -10,26 +10,28 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-dark">
-    <section class="container-fluid" style="position: absolute; top: 15vh;">
-    	<section class="row  justify-content-center">
-    		<div class="col-12 col-sm-6 bg-white text-black">
-	    		<h3> LOGIN TO YOUR ACCOUNT </h3>
-	      		<form>
-				  	<div class="form-group">
-					    <label for="user_id">User ID</label>
-					    <input type="text" class="form-control" id="user_id" aria-describedby="userIDHelp" placeholder="Enter your ID">
-				  	</div>
-				  	<div class="form-group">
-					    <label for="exampleInputPassword1">Password</label>
-					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-				  	</div>
-				  	<div class="form-group form-check">
-					    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-				  	</div>
-				  	<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-    		</div>
-    	</section>
-    </section>
+	<header style="width:100%; position:sticky; top:0;">
+		<?php 
+			include('templates/header.php');
+		?>
+	</header>
+	<section class="main" style="margin:20px">
+		<div class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    Dropdown button
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
+		</div>
+	</section>
+
+    <footer style="position:absolute; bottom: 0;">	
+    	<?php
+    		include('templates/footer.php')
+    	?>
+    </footer>
 </body>
+</html>
