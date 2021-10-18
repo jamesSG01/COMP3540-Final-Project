@@ -2,12 +2,12 @@
 <form class="container-sm" action="result.php" method="POST">
   <div class="search"> 
     <!-- Dropdown -->
-    <select class="bd-highlight" name="searchfield">
+    <select class="form-select btn-primary" name="searchfield">
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Search in
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <option value="*">ALL</option>
+        <option value="*" selected>ALL</option>
         <option value="courseID">CourseID</option>
         <option value="courseName">Course Name</option>
         <option value="credits">Credits</option>
@@ -20,7 +20,7 @@
     </select>
     <input type="text" class="form-control" placeholder="Search with keyword" name="searchterm">
     <a class="btn btn-primary" href="create.php">Insert</a> 
-    <button class="btn btn-primary" value="submit">Submit</button> 
-    <input class="btn btn-primary" type="reset"></input>
+    <div class="btn btn-primary" value="submit">Submit</div> 
+    <div class="btn btn-primary" type="reset">Reset</div>
   </div>
 </form>

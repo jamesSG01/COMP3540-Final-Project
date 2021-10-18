@@ -69,40 +69,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title> Create New Record | Assignment 2 </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-	<header >
-		<?php 
-			include('templates/header.html');
-		?>
-	</header>
-    <section class="create">  
-        <div class="wrapper bg-white">
-          
+
+<?php 
+	include('templates/header.html');
+?>
+<section class="create">
+    <div style="text-align: center;">
+        <a href="result.php" class="btn btn-primary" style="display: inline;"> Go Back </a>
+    </div>  
+    <div class="wrapper fadeInDown">
+        <div id="createform_content">  
           <form class="row g-3">
             <div class="">
               <label for="CourseID" class="form-label">CourseID </label>
+              <br>
               <input type="text" class="form-control" id="CourseID" name="CourseID" required>
             </div>
             <div class="">
               <label for="CourseName" class="form-label">Course Name</label>
+              <br>
               <input type="text" class="form-control" id="CourseName" name="CourseName" required>
             </div>
             <div class="">
               <label for="Credits" class="form-label" step=0.1>Credits</label>
+              <br>
               <input type="number" class="form-control" id="Credits" name="Credits" required>
             </div>
             <div class="">
               <label for="Term" class="form-label">Term</label>
+              <br>
               <div id="Term" name="Term">
                 <select class="form-select" id="autoSizingSelect">
                   <option selected disabled>Choose</option>
@@ -112,35 +107,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </select>
               </div>  
             </div>
+            <br>
             <div class="">
               <label for="TotalHours" class="form-label">Total Hours</label>
+              <br>
               <input type="text" class="form-control" id="TotalHours" name="TotalHours">
             </div>
             <div class="">
               <label for="ClassroomType" class="form-label">Classroom Type</label>
+              <br>
               <input type="text" class="form-control" id="ClassroomType" name="ClassroomType">   
             </div>
             <div class="">
               <label for="Tution" class="form-label" >Tution</label>
+              <br>
               <input type="number" class="form-control" id="Tution" name="Tution" required step=0.1>
             </div>
             <div class="">
-              <label for="inputZip" class="form-label">Description</label>
-              <input type="text" class="form-control" id="inputZip">
+              <label for="description" class="form-label">Description</label>
+              <br>
+              <input type="text" class="form-control" id="description" name="Description">
             </div>
             <div class="">
-              <input type="reset" class="btn btn-primary"></input>
-            </div>
-            <div class="">
+              <button type="reset" class="btn btn-primary">Reset&nbsp; </button>
               <button type="submit" class="btn btn-primary"> Submit </button>
             </div>
           </form>
         </div>
-    </section>
-    <footer>	
-        <?php
-    	   include('templates/footer.html')
-        ?>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+<?php
+   include('templates/footer.html')
+?>
+  
