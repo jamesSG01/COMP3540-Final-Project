@@ -1,132 +1,57 @@
-<?
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$input_courseName = $input_courseID = $input_classroomType = "";
-$input_totalHours = $input_term = $input_tuition = "";
-$input_description = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate name
-    $input_courseName = trim($_POST["name"]);
-    if(empty($input_name)){
-        $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_courseName, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
-    } else{
-        $courseName = $input_name; 
-    }
-    
-    // Validate courseID
-    $input_courseID = trim($_POST["courseID"]);
-    if(empty($courseID)){
-        $name_err = "Please enter a Course ID .";
-    } elseif(!filter_var($input_courseName, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid Course ID.";
-    } else{
-        $courseName = $input_name; 
-    }
-    
-    // Validate Credit
-    $input_salary = trim($_POST["salary"]);
-    if(empty($input_salary)){
-        $salary_err = "Please enter the salary amount.";     
-    } elseif(!ctype_digit($input_salary)){
-        $salary_err = "Please enter a positive integer value.";
-    } else{
-        $salary = $input_salary;
-    }
-    
-    // Check input errors before inserting in database
-    if(empty($name_err) && empty($_err) && empty($salary_err)){
-        // Prepare an insert statement
-        $sql = "INSERT INTO courses (name, address, salary) VALUES (?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_address, $param_salary);
-            
-            // Set parameters
-            $param_name = $name;
-            $param_address = $address;
-            $param_salary = $salary;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Records created successfully. Redirect to landing page
-                header("location: index.php");
-                exit();
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
-        // Close statement
-        mysqli_stmt_close($stmt);
-    }
-    // Close connection
-    mysqli_close($link);
-}
-?>
+
 
 <?php 
+    $title = 'Create New Record';
 	include('templates/header.html');
 ?>
 <section class="create">
-    <div style="text-align: center;">
-        <a href="result.php" class="btn btn-primary" style="display: inline;"> Go Back </a>
-    </div>  
+
     <div class="wrapper fadeInDown">
-        <div id="createform_content">  
+        <a href="index.php" class="btn btn-primary" id="goback_btn"> Send Me Back </a>
+        <div id="createform_content">
+        <h3> CREATE NEW COURSE </h3>  
+   
           <form class="row g-3">
             <div class="">
               <label for="CourseID" class="form-label">CourseID </label>
               <br>
-              <input type="text" class="form-control" id="CourseID" name="CourseID" required>
+              <input type="text" class="form-control" id="CourseID" maxlength="7" name="  CourseID" placeholder="Course ID" required>
             </div>
             <div class="">
               <label for="CourseName" class="form-label">Course Name</label>
               <br>
-              <input type="text" class="form-control" id="CourseName" name="CourseName" required>
+              <input type="text" class="form-control" id="CourseName" maxlength="68" name="  CourseName" placeholder="Course Name" required>
             </div>
             <div class="">
               <label for="Credits" class="form-label" step=0.1>Credits</label>
               <br>
-              <input type="number" class="form-control" id="Credits" name="Credits" required>
+              <input type="number" class="form-control" min="0" max="99.9" step="0.1" id="Credits"  name="Credits" placeholder="0-99.9 " required>
             </div>
             <div class="">
               <label for="Term" class="form-label">Term</label>
               <br>
-              <div id="Term" name="Term">
-                <select class="form-select" id="autoSizingSelect">
-                  <option selected disabled>Choose</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>  
+              <input name="Term" type="number" min="1" max="127" step="1" placeholder="  (Integer) 1- 127">
             </div>
             <br>
             <div class="">
               <label for="TotalHours" class="form-label">Total Hours</label>
               <br>
-              <input type="text" class="form-control" id="TotalHours" name="TotalHours">
+              <input type="number" class="form-control" id="TotalHours" name="TotalHours" step="1" min="1" max="99" placeholder="  (Integer) 0-99">
             </div>
             <div class="">
               <label for="ClassroomType" class="form-label">Classroom Type</label>
               <br>
-              <input type="text" class="form-control" id="ClassroomType" name="ClassroomType">   
+              <input type="text" class="form-control" id="ClassroomType" name="ClassroomType" placeholder="NULL - varchar(0)" disabled>   
             </div>
             <div class="">
               <label for="Tution" class="form-label" >Tution</label>
               <br>
-              <input type="number" class="form-control" id="Tution" name="Tution" required step=0.1>
+              <input type="number" class="form-control" id="Tution" name="Tution" required step=0.0001 placeholder="Positive Number only">
             </div>
             <div class="">
               <label for="description" class="form-label">Description</label>
               <br>
-              <input type="text" class="form-control" id="description" name="Description">
+              <textarea rows="5" cols="35" maxlength="150" id="description" name="Description" placeholder="   Max 150 words.."></textarea>
             </div>
             <div class="">
               <button type="reset" class="btn btn-primary">Reset&nbsp; </button>
@@ -139,4 +64,105 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <?php
    include('templates/footer.html')
 ?>
-  
+
+
+
+<?php
+    // Include config file
+    require_once "config.php";
+     
+    // Define variables and initialize with empty values
+    $courseName = $courseID = $credits = $classroomType = $totalHours = $term = $tuition = "";
+    $courseName_err = $courseID_err =$credits_err= $classroomType_err = $totalHours_err = $term_err = $tuition_err = "";
+
+    // Processing form data when form is submitted
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        
+        // Validate courseID (NOT EMPTY)
+        $input_courseID = trim($_POST["courseID"]);
+        if(empty($input_courseID)){
+            $courseID_err = "Please enter a Course ID .";
+        } elseif(!filter_var($input_courseID, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"[A-Za-Z ][A-Za-z0-9 ]*")))){
+            $name_err = "Please enter a valid Course ID.";
+        } else{
+            $courseID = $input_courseID; 
+        }
+
+        // Validate name 
+        $input_courseName = trim($_POST["courseName"]);
+        if(empty($input_courseName)){
+            $name_err = "Please enter a name for course.";
+        } elseif(!filter_var($input_courseName, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+            $name_err = "Please enter a valid course name.";
+        } else{
+            $courseName = $input_courseName; 
+        }
+
+        // Validate Credits (NOT EMPTY)
+        $input_credits = trim($_POST["Credits"]);
+        if(empty($input_credits)){
+            $credits_err = "Please enter credits for this course.";     
+        } elseif(!is_numeric($input_credits)){
+            $credits_err = "Please enter a positive value.";
+        } else{
+            $credits = $input_credits;
+        }
+
+        // Validate Total Hours
+        $input_totalHours = trim($_POST["TotalHours"]);
+        if(!ctype_digit($input_totalHours) && !empty($input_totalHours)){
+            $totalHours_err = "Please enter a positive integer value.";
+        } else{
+            $totalHours = $TotalHours;
+        }
+        
+
+        // Validate Tuition
+        $input_tuition = trim($_POST["Tuition"]);
+        if(empty($input_classroomType)){
+            $tuition_err = "Please enter the salary amount.";     
+        } elseif(!ctype_digit($input_classroomType)){
+            $tuition_err = "Please enter a positive integer value.";
+        } else{
+            $tuition = $input_tuition;
+        }
+        // Set Description
+        $description = trim($_POST["Description"]);
+        
+        /*=================================================
+         Check input errors before inserting in database
+         ==================================================*/
+        if(empty($name_err) && empty($courseID_err) && empty($classroomType_err) && ($totalHours_err) && ($tuition_err)){
+            // Prepare an insert statement
+            $sql = "INSERT INTO courses (CourseID, CourseName, Credits, TotalHours, Term, Tution, Description) VALUES (?, ?, ?, ?, ?, ?, ?)";
+             
+            if($stmt = mysqli_prepare($link, $sql)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "sss", $param_id, $param_name, $param_credits, $param_hours, $param_classroom, $param_term, $param_tuition, $param_desc);
+                
+                // Set parameters
+                $param_id = $courseID;
+                $param_name = $courseName;
+                $param_credits = $credits;
+                $param_hours = $totalHours;
+                $param_classroom = $classroomType;
+                $param_term = $term;
+                $param_tuition = $tuition;
+                $param_desc = $description;
+
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Records created successfully. Redirect to landing page
+                    header("location: index.php");
+                    exit();
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+            }
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+        // Close connection
+        mysqli_close($link);
+    }
+?>

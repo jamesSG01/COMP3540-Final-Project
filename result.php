@@ -1,12 +1,17 @@
+
 <?php 
-    $title = " Query Result";
+    $title = 'Query Result';
 	include('templates/header.html');
 ?>
-	<section class="main">
-		<div class="wrapper">
-        <?php 
-            include('templates/searchbar.html')
-        ?>
+<section class="main">
+    <div>
+        <h1> Search Results </h1>
+    </div>
+    <div>
+        <a href="index.php" class="btn btn-primary"> Search Again </a> 
+        <a class="btn btn-primary" href="create.php" >Create New Record</a> 
+    </div>
+	<div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -24,14 +29,14 @@
                         $sql = "SELECT * FROM courses";
                     else if ($searchfield == '*')
                        $sql = "SELECT * FROM courses WHERE 
-                   (CourseID LIKE '%$searchterm%' 
-                   OR CourseName LIKE '%$searchterm%' 
-                   OR Credits LIKE '%$searchterm%' 
-                   OR TotalHours LIKE '%$searchterm%' 
-                   OR ClassroomType LIKE '%$searchterm%' 
-                   OR Term LIKE '%$searchterm' 
-                   OR Tuition LIKE '%$searchterm%'
-                   OR Description LIKE '%$searchterm')";
+                       (CourseID LIKE '%$searchterm%' 
+                       OR CourseName LIKE '%$searchterm%' 
+                       OR Credits LIKE '%$searchterm%' 
+                       OR TotalHours LIKE '%$searchterm%' 
+                       OR ClassroomType LIKE '%$searchterm%' 
+                       OR Term LIKE '%$searchterm' 
+                       OR Tuition LIKE '%$searchterm%'
+                       OR Description LIKE '%$searchterm')";
                     else 
                         $sql = "SELECT * FROM courses WHERE $searchfield LIKE '%$searchterm%'";                    
                     if($result = mysqli_query($link, $sql)){
@@ -63,8 +68,8 @@
                                         echo "<td>" . $row['Tuition'] . "</td>";	
                                         echo "<td>" . $row['Description'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="#" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="#" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="#" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a> <br>';
+                                            echo '<a href="#" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a><br>';
                                             echo '<a href="#" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";	
                                     echo "</tr>";
@@ -79,15 +84,15 @@
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
                     }
- 
                     // Close connection
                     mysqli_close($link);
-                    ?>
-                </div>
-            </div>        
-        </div>
+                ?>
+            </div>
+        </div>        
     </div>
-	</section>
+</div>
+
+    
 <?php
-    include('templates/footer.html')
+	include('templates/footer.html')
 ?>
