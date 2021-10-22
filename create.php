@@ -39,7 +39,7 @@
         if(empty($input_credits)){
             $credits_err = "Please enter credits for this course.";     
         } elseif(!is_numeric($input_credits) ){
-                $credits_err = "Please enter a positive value.";
+                $credits_err = "Invalid Value.";
         } else{
             $Credits = $input_credits;
         }
@@ -47,26 +47,33 @@
 
         // Validate Total Hours
         if(!ctype_digit($input_totalHours) && !empty($input_totalHours)){
-            $totalHours_err = "Please enter a positive integer value.";
-        } else{
+            $totalHours_err = "Invalid Value.";
+        } elseif ($input_totalHours<0 && !empty($input_totalHours) ){
+            $totalHours_err = "Out of bounds !";
+        } 
+        else{
             $TotalHours = $input_totalHours;
         }
         
    
         // Validate Term
         if(!ctype_digit($input_term) && !empty($input_term)){
-            $term_err = "Please enter a valid value.";
+            $term_err = "Invalid Value.";
+        } elseif ($input_term<0 && !empty($input_totalHours)){
+            $totalHours_err = "Out of bounds !";
         } else{
             $Term = $input_term;
         }
              
         
         // Validate Tuition
-        if(empty($input_credits)){
+        if(empty($input_tuition)){
             $tuition_err = "Please enter tuition for this course."; 
-        }elseif(!ctype_digit($input_tuition)){
+        } elseif(!ctype_digit($input_tuition)){
             $tuition_err = "Please enter a valid value.";
-        } else{
+        } elseif ($input_tuition<0){
+            $totalHours_err = "Out of bounds !";
+        }else{
             $Tuition = $input_tuition;
         }
             
@@ -81,7 +88,7 @@
         // PROCEED IF THERE IS NO ERROR
         if(empty($courseName_err)  && empty($courseID_err)   && empty($term_err) && empty($tuition_err) && empty($credits_err) && empty($totalHours_err)){
             //query
-            $sql = "INSERT INTO courses (`CourseID`, `CourseName`, `Credits`, `TotalHours`, `Term`, `Tuition`, `Description`) VALUES ('$CourseID','$CourseName','$Credits','$TotalHours','$Term','$Tuition','$Description');";
+            $sql = "INSERT INTO courses (`CourseID`, `CourseName`, `Credits`, `TotalHours`, `Term`, `Tuition`, `Description`) VALUES ('$CourseID','$CourseName','$Credits','$TotalHours','$Term','$Tuition','$Descripion');";
             mysqli_query($link,$sql);
         
             // Close connection
@@ -93,7 +100,6 @@
             echo "Oops! Something went wrong. Please try again later.";
         }
     }
-    //
 ?>
 
 
@@ -104,7 +110,6 @@
 <section class="create">
 
     <div class="wrapper fadeInDown">
-        <a href="index.php" class="btn btn-primary" id="goback_btn"> Send Me Back </a>
         <div id="createform_content">
         <h3> CREATE NEW COURSE </h3>  
    
@@ -130,7 +135,7 @@
             <div class="">
               <label for="Term" class="form-label">Term</label>
               <br>
-              <input name="Term" type="number" min="1" max="127" step="1" placeholder="  (Integer) 1- 127">
+              <input name="Term" class="form-control" type="number" min="1" max="127" step="1" placeholder="  (Integer) 1- 127">
               <span class="invalid-feedback d-block"><?php echo $term_err;?></span>
             </div>
             <br>
@@ -155,11 +160,11 @@
             <div class="">
               <label for="description" class="form-label">Description</label>
               <br>
-              <textarea rows="5" cols="35" maxlength="150" id="description" name="Description" placeholder="   Max 150 words.."></textarea>
+              <textarea class="form-control" rows="5" cols="35" maxlength="150" id="description" name="Description" placeholder="   Max 150 words.."></textarea>
               <span class="invalid-feedback d-block"><?php echo $descripion_err;?></span>
             </div>
             <div class="">
-                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <button type="submit" class="btn btn-primary" value="Submit"> Submit </button>
                     <button type="reset" class="btn btn-primary">Reset&nbsp; </button>
                     <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
             </div>

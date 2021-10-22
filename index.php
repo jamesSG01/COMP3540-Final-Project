@@ -22,7 +22,7 @@
             <option value="description">Description</option>
           </select>
           
-            <input type="search" size="30" placeholder="Search with keyword" name="searchterm" id="search_input">
+            <input type="search" size="30" maxlength="30" placeholder="Search with keyword" name="searchterm" id="search_input" required>
             <button class="btn btn-primary" value="submit" id="search_btn"><i class="fa fa-search"></i></button>  
           <a class="btn btn-primary" href="create.php" id="add_btn"> <i class="fa fa-plus"></i> </a> 
         </div> 
@@ -54,7 +54,6 @@
                                         echo "<th>TERM</th>";
                                         echo "<th>TUITION</th>";
                                         echo "<th>DESCRIPTION</th>";
-                                        echo "<th>ACTION</th>";
                                     echo "</tr>";
                                 echo "</thead>";
 
@@ -69,11 +68,6 @@
                                         echo "<td>" . $row['Term'] . "</td>"; 
                                         echo "<td>" . $row['Tuition'] . "</td>";  
                                         echo "<td>" . $row['Description'] . "</td>";
-                                        echo "<td>";
-                                            echo '<a href="#" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a><br>';
-                                            echo '<a href="#" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a><br>';
-                                            echo '<a href="#" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                                        echo "</td>"; 
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
