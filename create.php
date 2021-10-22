@@ -23,9 +23,16 @@
             $courseID_err = "Please enter a Course ID .";
         } elseif(preg_match('/[!\'^£$%&*()}{@#~?><>,|=_+¬-]/', $input_courseID)){
             $courseID_err = "Please enter a valid Course ID.";
-        } else{
-            $CourseID = $input_courseID; 
+        } else {
+            $result = mysqli_query($link,"SELECT * FROM courses WHERE CourseID='$input_courseID'");
+            $num_rows = mysqli_num_rows($result);
+            if ($num_rows) {
+                $courseID_err = "Duplicated CourseID";
+            } else{
+                $CourseID = $input_courseID; 
+            }
         }
+        
         // Validate name 
         if(empty($input_courseName)){
             $courseName_err = "Please enter a name for course.";
