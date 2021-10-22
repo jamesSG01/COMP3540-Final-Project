@@ -8,8 +8,8 @@
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
         // Define variables and initialize with empty values
-        $CourseName = $CourseID = $Credits = $ClassroomType = $TotalHours = $Term = $Tuition = $Descripion="";
-        $courseName_err = $courseID_err = $credits_err = $totalHours_err = $term_err = $tuition_err = null;
+        $CourseName = $CourseID = $Credits = $TotalHours = $Term = $Tuition = $Descripion ="";
+        $courseName_err = $courseID_err = $credits_err = $totalHours_err = $descripion_err = $term_err = $tuition_err = null;
 
         //GET FORM DATA
         $input_courseID = trim($_POST["CourseID"]);
@@ -20,42 +20,52 @@
         $input_tuition = trim($_POST["Tuition"]);
         $input_description = trim($_POST["Description"]);
 
-        //echo $CourseID;
-        //===============================
-        //         VALIDATION 
-        //===============================
-             // Validate courseID (NOT EMPTY)
-            $input_courseID = trim($_POST["CourseID"]);
-            
-            $CourseID = $input_courseID; 
-            
-
-            // Validate name 
-            $input_courseName = trim($_POST["CourseName"]);
         
-            $CourseName = $input_courseName; 
-            
+        // Validate courseID (NOT EMPTY)        
+        $CourseID = $input_courseID; 
+        
 
-            // Validate Credits (NOT EMPTY)
-            $input_credits = trim($_POST["Credits"]);
-           
-            $Credits = $input_credits;
-            
+        // Validate name     
+        $CourseName = $input_courseName; 
+        
+        // Validate Credits (NOT EMPTY)
+        if(empty($input_credits)){
+            $credits_err = "Please enter credits for this course.";     
+        } elseif(!is_numeric($input_credits)){
+            $credits_err = "Please enter a positive value.";
+        } else{
+            $credits = $input_credits;
+        }
+        
 
-            // Validate Total Hours
-            $input_totalHours = trim($_POST["TotalHours"]);
-       
-            // Validate Term
-            $input_term = trim($_POST["Term"]);
-         
+        // Validate Total Hours
+        if(!ctype_digit($input_totalHours) && !empty($input_totalHours)){
+            $totalHours_err = "Please enter a positive integer value.";
+        } else{
+            $TotalHours = $input_totalHours;
+        }
+        
+   
+        // Validate Term
+        if(!ctype_digit($input_term) && !empty($input_term)){
+            $term_err = "Please enter a valid value.";
+        } else{
             $Term = $input_term;
+        }
+             
+        
+        // Validate Tuition
+        if(empty($input_credits)){
+            $tuition_err = "Please enter tuition for this course."; 
+        }elseif(!ctype_digit($input_tuition)){
+            $tuition_err = "Please enter a valid value.";
+        } else{
+            $Tuition = $input_tuition;
+        }
             
-
-            // Validate Tuition
-            $input_tuition = trim($_POST["Tuition"]);
-      
-            // Pass value to $Description
-            $Descripion = $input_description;
+  
+        // Pass value to $Description
+        $Descripion = $input_description;
 
         /*//DEBUG 
         if (empty($courseName_err)) {
@@ -75,7 +85,64 @@
         }
         if (empty($credits_err)) {
             echo 'true';
-        }*/
+        }
+          //===============================
+        //         VALIDATION 
+        //===============================
+        // Validate courseID (NOT EMPTY)
+        if(empty($input_courseID)){
+            $courseID_err = "Please enter a Course ID .";
+        //} elseif(!filter_var($input_courseID, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]*$/")))){
+        //    $name_err = "Please enter a valid Course ID.";
+        } else{
+            $courseID = $input_courseID; 
+        }
+
+        // Validate name 
+        if(empty($input_courseName)){
+            $name_err = "Please enter a name for course.";
+        //} elseif(!filter_var($input_courseName, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]*$/")))){
+        //    $name_err = "Please enter a valid course name.";
+        } else{
+            $courseName = $input_courseName; 
+        }
+
+        // Validate Credits (NOT EMPTY)
+        if(empty($input_credits)){
+            $credits_err = "Please enter credits for this course.";     
+        //} elseif(!is_numeric($input_credits)){
+        //    $credits_err = "Please enter a positive value.";
+        } else{
+            $credits = $input_credits;
+        }
+
+        // Validate Total Hours
+        $input_totalHours = trim($_POST["TotalHours"]);
+        if(!ctype_digit($input_totalHours) && !empty($input_totalHours)){
+            $totalHours_err = "Please enter a positive integer value.";
+        } else{
+            $totalHours = $TotalHours;
+        }
+        
+
+        // Validate Tuition
+        if(empty($input_classroomType)){
+            $tuition_err = "Please enter the salary amount.";     
+        } elseif(!ctype_digit($input_classroomType)){
+            $tuition_err = "Please enter a positive integer value.";
+        } else{
+            $tuition = $input_tuition;
+        }
+         // Validate Description 
+        if(empty($input_description)){
+            $courseID_err = "Please enter a Course ID .";
+        //} elseif(!filter_var($input_description, FILTER_VALIDATE_REGEXP,  array("options"=>array("regexp"=>"/^[a-zA-Z0-9\s]*$/")))){
+        //    $descripion_err = "Please enter a valid Course ID.";
+        } else{
+            $Descripion = $input_description; 
+        }
+
+        */
 
         // PROCEED IF THERE IS NO ERROR
         if(empty($courseName_err)  && empty($courseID_err)   && empty($term_err) && empty($tuition_err) && empty($credits_err) && empty($totalHours_err)){
@@ -98,7 +165,7 @@
 
 <?php 
     $title = 'Create New Record';
-	include_once('templates/header.html');
+    include_once('templates/header.html');
 ?>
 <section class="create">
 
@@ -167,6 +234,8 @@
 <?php
    include('templates/footer.html')
 ?>
+
+
 
 
 
