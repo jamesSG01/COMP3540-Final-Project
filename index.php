@@ -1,6 +1,6 @@
 <?php 
   $title = "Homepage";
-	include('templates/header.html');
+	include_once('templates/header.html');
 ?>
 
 <section class="wrapper">
@@ -23,7 +23,7 @@
           </select>
           
             <input type="search" size="30" placeholder="Search with keyword" name="searchterm" id="search_input">
-            <button class="btn btn-primary"  id="search_btn"><i class="fa fa-search"></i></button>  
+            <button class="btn btn-primary" value="submit" id="search_btn"><i class="fa fa-search"></i></button>  
           <a class="btn btn-primary" href="create.php" id="add_btn"> <i class="fa fa-plus"></i> </a> 
         </div> 
       </div>
@@ -96,5 +96,5 @@
     </div>
   </section>
 <?php
-	include('templates/footer.html')
+	include_once('templates/footer.html')
 ?>
