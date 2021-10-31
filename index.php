@@ -3,7 +3,7 @@
 	include_once('templates/header.html');
 ?>
 
-<section class="wrapper">
+<section class="wrapper" id="search_wrapper">
   <!-- The search form -->
   <h1> Available Courses Details </h1>
   <form class="container" action="result.php" method="POST">

@@ -41,6 +41,7 @@
                         $sql = "SELECT * FROM courses WHERE $searchfield LIKE '%$searchterm%'";                    
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
+                            echo "<img src='img/waalaa.jpg'></img>";
                             echo '<table class="table table-bordered table-striped">';
                                 echo "<thead>";
                                     echo "<tr>";
@@ -79,7 +80,9 @@
                             // Free result set
                             mysqli_free_result($result);
                         } else{
+                            echo '<iframe src="https://giphy.com/embed/pMztjzgwKXglMMtsHs" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p></p>';
                             echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+
                         }
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
@@ -89,7 +92,6 @@
                 ?>
             </div>
         </div>        
-    </div>
 </section>
 
     

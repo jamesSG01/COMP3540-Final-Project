@@ -20,6 +20,7 @@ body {
   min-height: 100%;
   padding: 20px;
 }
+
 #createform_content {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
@@ -32,6 +33,12 @@ body {
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
 }
+#form_wrapper {
+  background-image: url('img/wala.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 #createform_content input, #createform_content select  { 
 	width: 50%;
 	display: inline;
@@ -40,6 +47,7 @@ body {
 	header {
 		z-index: 100;
 	}
+
 	.main td, .main tr {
 		background-color:#0e1720; 
 		color: #87959f; 
