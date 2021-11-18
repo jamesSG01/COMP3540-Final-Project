@@ -46,7 +46,7 @@
 ?>
 
 <?php
-    $title = "Login";
+    $title = "Sign Up";
     include_once('templates/header.html');
 ?> 
 <section class="create bg-primary">

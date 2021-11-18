@@ -39,7 +39,7 @@
 ?>
 
 <?php 
-    $title = 'Create New Record';
+    $title = 'Delete Record';
     include_once('templates/header.html');
 ?>
 <section class="create">
